@@ -28,7 +28,7 @@ public class HealthCheckResource {
     @PermitAll
     @GET
     public Response ping() {
-        LOG.debug("=======get=======");
+        LOG.info(HealthCheckResource.class+".ping;");
         return Response.ok().entity("Healthcheck get. Running version " + env.getProperty("application.version")).build();
     }
 

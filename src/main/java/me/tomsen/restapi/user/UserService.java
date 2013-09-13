@@ -7,7 +7,7 @@ public interface UserService {
     /**
      * Login a User
      *
-     * @param request
+     * @param request login request
      * @return AuthenticatedUserToken
      */
     public AuthenticatedUserToken login(LoginRequest request);
@@ -15,9 +15,20 @@ public interface UserService {
     /**
      * Delete all SessionToken objects that have not been accessed within the duration specified by the argument timeSinceLastUpdatedInMinutes
      *
-     * @param timeSinceLastUpdatedInMinutes
+     * @param timeSinceLastUpdatedInMinutes ...
      * @return the number of sessions removed
      */
     public Integer deleteExpiredSessions(int timeSinceLastUpdatedInMinutes);
+
+    /**
+     * Get a User based on a unique identifier
+     *
+     * Identifiers supported are uuid, emailAddress
+     *
+     * @param userIdentifier ...
+     * @return  User
+     */
+    public UserPrincipal getUser(UserPrincipal requestingUser, String userIdentifier);
+
 
 }

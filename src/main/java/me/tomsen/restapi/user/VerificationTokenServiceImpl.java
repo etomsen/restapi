@@ -10,6 +10,8 @@ import me.tomsen.restapi.user.exception.TokenNotFoundException;
 import javax.validation.Validator;
 
 import org.apache.commons.codec.binary.Base64;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +20,7 @@ import org.springframework.util.Assert;
 
 @Service("verificationTokenService")
 public class VerificationTokenServiceImpl extends BaseService implements VerificationTokenService {
+    Logger LOG = LoggerFactory.getLogger(VerificationTokenServiceImpl.class);
 
     private VerificationTokenRepository tokenRepository;
 
@@ -38,6 +41,7 @@ public class VerificationTokenServiceImpl extends BaseService implements Verific
 
     @Transactional
     public VerificationToken verify(String base64EncodedToken) {
+        LOG.debug(VerificationToken.class+".verify [base64EncodedToken: "+base64EncodedToken+"].");
         VerificationToken token = loadToken(base64EncodedToken);
         if (token.isVerified() || token.getUser().isVerified()) {
             throw new AlreadyVerifiedException();

@@ -9,16 +9,15 @@ import me.tomsen.restapi.user.api.LoginRequest;
 import java.net.URI;
 
 import javax.annotation.security.PermitAll;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
+import javax.annotation.security.RolesAllowed;
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
+import me.tomsen.restapi.user.api.UserPrincipal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +47,7 @@ public class UserResource {
     @Path("login")
     @POST
     public Response login(LoginRequest request) {
+        LOG.debug(UserResource.class+"login.");
         AuthenticatedUserToken token = userService.login(request);
         return getLoginResponse(token);
     }
@@ -55,6 +55,15 @@ public class UserResource {
     private Response getLoginResponse(AuthenticatedUserToken token) {
         URI location = UriBuilder.fromPath(uriInfo.getBaseUri() + "user/" + token.getUserId()).build();
         return Response.ok().entity(token).contentLocation(location).build();
+    }
+
+    @RolesAllowed({"authenticated"})
+    @Path("{userId}")
+    @GET
+    public Response getUser(@Context SecurityContext sc, @PathParam("userId") String userId) {
+        UserPrincipal requestingUser = (UserPrincipal)sc.getUserPrincipal();
+        UserPrincipal user = userService.getUser(requestingUser, userId);
+        return Response.ok().entity(user).build();
     }
 
 }
