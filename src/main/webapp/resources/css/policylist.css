@@ -1,0 +1,103 @@
+.policylist{
+
+}
+.policylistitem {
+  background-color: white;
+  position: relative; 
+  border: 1px solid #DDD; 
+  overflow: hidden;
+  border-radius: 10px;
+  height: 80px;
+  color: black;
+}
+
+.x-list.policylist .x-list-item .x-list-item-body, .x-list.policylist .x-list-item.x-list-item-tpl .x-innerhtml {
+  padding: 5px 6px !important;
+}
+
+.x-list.policylist .x-list-item.x-list-item-tpl {
+  border: 0 !important;
+}
+
+.policylistitem > .info {
+  position: absolute; 
+  left: 100px; 
+  right: 90px; 
+  top: 0; 
+  margin: 5px;
+  margin-left: 10px;
+}
+
+.policylistitem > .deadline {
+  position: absolute; 
+  right: 0;
+  bottom: 0; 
+  text-align: right;
+  width: 80px;
+  margin-bottom: 5px;
+  margin-right: 10px;
+  font-size: small; 
+  z-index: 1;
+}
+
+.policylistitem > .paymentsclaims {
+  position: absolute; 
+  right: 0;
+  top: 0; 
+  text-align: right;
+  width: 150px;
+  margin-top: 5px;
+  margin-right: 10px;
+  font-size: small; 
+  z-index: 1;
+}
+
+.policylistitem > .info > .number {
+  font-weight: bold;
+}
+
+.policylistitem > .info > .name {
+}      
+
+.policylistitem > .branch {
+  height: 100%;
+  width: 100px;
+  position: relative;
+  margin-top: -8px;
+}
+.policylistitem > .branch > img{
+  width: 40px; 
+  height: 40px;
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  margin-top: -20px;
+  margin-left: -20px;
+}
+
+.policylistitem > .branch > div
+{
+  position: absolute; 
+  top: 50%;
+  margin-top: 25px; 
+  /* just under the image*/
+  text-align: center;
+  width: 100%;
+  font-size: 50%;
+}
+.policylistitem > .info > .desc {
+  color: grey; 
+  font-size: small; 
+  margin-top: 5px
+}
+
+.desc_cutter {
+  position: absolute; 
+  left: 100px; 
+  right: 0; 
+  bottom: 0; 
+  height: 10px; 
+  background-color: white; 
+  margin-left: 5px; 
+  color: black;        
+}

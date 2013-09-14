@@ -1,0 +1,86 @@
+.claimlist {
+
+}
+
+.claimlistitem {
+  background-color: white;
+  position: relative; 
+  border: 1px solid #DDD; 
+  overflow: hidden;
+  border-radius: 10px;
+  height: 90px;
+  color: black;  
+}
+
+.x-list.claimlist .x-list-item .x-list-item-body, .x-list.claimlist .x-list-item.x-list-item-tpl .x-innerhtml {
+  padding: 5px 6px !important;
+}
+
+.x-list.claimlist .x-list-item.x-list-item-tpl {
+  border: 0 !important;
+}
+
+.claimlistitem > .line {
+  overflow: hidden;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.claimlistitem > .title {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+
+.claimlistitem .field {    
+  padding-left: 25px;
+  background-repeat: no-repeat;
+  background-position: left center;  
+  height: 20px;
+}
+
+.claimlistitem .field.left{
+  float: left;
+}
+
+.claimlistitem .field.right{
+  float: right;
+}
+
+.claimlistitem .field > .text {
+  line-height: 20px;
+  min-height: 20px;
+  min-width: 20px;
+  color: grey;
+  font-size: small;  
+}
+
+.claimlistitem .field.type {
+  width: 20%;
+  background-image: url("../images/category.png");   
+}
+
+.claimlistitem .field.date {
+  width: 20%;
+  background-image: url("../images/date.png");    
+}
+
+.claimlistitem .field.archived {
+  width: 20%;
+  background-image: url("../images/archived.png");    
+}
+
+.claimlistitem .field.counterpart {
+  width: 80%;
+  background-image: url("../images/counterpart.png");    
+}
+
+
+
+
+
+
+

@@ -1,0 +1,86 @@
+.messagelist {
+
+}
+
+.messagelistitem {
+  background-color: white;
+  position: relative; 
+  border: 1px solid #DDD; 
+  overflow: hidden;
+  border-radius: 10px;
+  height: 90px;
+  color: black;  
+}
+
+.x-list.messagelist .x-list-item .x-list-item-body, .x-list.messagelist .x-list-item.x-list-item-tpl .x-innerhtml {
+  padding: 5px 6px !important;
+}
+
+.x-list.messagelist .x-list-item.x-list-item-tpl {
+  border: 0 !important;
+}
+
+.messagelistitem > .line {
+  overflow: hidden;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.messagelistitem > .title {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+
+.messagelistitem .field {    
+  padding-left: 25px;
+  background-repeat: no-repeat;
+  background-position: left center;  
+  height: 20px;
+}
+
+.messagelistitem .field.left{
+  float: left;
+}
+
+.messagelistitem .field.right{
+  float: right;
+}
+
+.messagelistitem .field > .text {
+  line-height: 20px;
+  min-height: 20px;
+  min-width: 20px;
+  color: grey;
+  font-size: small;  
+}
+
+.messagelistitem .field.type {
+  width: 20%;
+  background-image: url("../images/category.png");   
+}
+
+.messagelistitem .field.from {
+  width: 20%;
+  background-image: url("../images/dateFrom.png");    
+}
+
+.messagelistitem .field.to {
+  width: 20%;
+  background-image: url("../images/dateTo.png");    
+}
+
+.messagelistitem .field.doc {
+  width: 80%;
+  background-image: url("../images/doc.png");    
+}
+
+
+
+
+
+
+

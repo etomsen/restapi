@@ -1,0 +1,61 @@
+Ext.define('eibwebapp.store.MainMenu', {
+  extend: 'Ext.data.Store',
+  requires: "Ext.data.proxy.LocalStorage",
+  config: {
+    proxy: {
+      type: 'localstorage',
+      id: 'eibwebapp-mainmenu'
+    },
+    model: 'eibwebapp.model.MainMenu',
+    data: [{
+      id: 1,
+      role: "user",
+      title: Lang.home,
+      url: ""
+    }, {
+      id: 2,
+      role: "user",
+      title: Lang.policy,
+      url: "policy/list"
+    }, {
+      id: 3,
+      role: "user",
+      title: Lang.messages,
+      url: "message/list"
+    }, {
+      id: 4,
+      role: "user",
+      title: Lang.logout,
+      url: "logout"
+    }, {
+      id: 5,
+      role: "admin",
+      title: Lang.home,
+      url: ""
+    }, {
+      id: 6,
+      role: "admin",
+      title: Lang.policy,
+      url: "policy/list"
+    }, {
+      id: 7,
+      role: "admin",
+      title: Lang.selectcustomer,
+      url: "customer/list"
+    }, {
+      id: 8,
+      role: "admin",
+      title: Lang.messages,
+      url: "message/list"
+    }, {
+      id: 9,
+      role: "admin",
+      title: Lang.logout,
+      url: "logout"
+    }],
+    filters: [{
+      property: 'role',
+      value: 'admin'
+    }]
+  }
+});

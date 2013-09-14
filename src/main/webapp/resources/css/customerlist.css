@@ -1,0 +1,105 @@
+.customerlist {
+
+}
+
+.customerlistitem {
+  background-color: white;
+  position: relative; 
+  border: 1px solid #DDD; 
+  overflow: hidden;
+  border-radius: 10px;
+  height: 110px;
+  color: black;
+}
+
+.x-list.customerlist .x-list-item .x-list-item-body, .x-list.customerlist .x-list-item.x-list-item-tpl .x-innerhtml {
+  padding: 5px 6px !important;
+}
+
+.x-list.customerlist .x-list-item.x-list-item-tpl {
+  border: 0 !important;
+}
+
+.customerlistitem > .info {
+  margin-left: 30px;
+  width: 100%;
+}
+
+
+.customerlistitem > .name {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-left: 20px;
+  overflow: hidden;
+  width: 200%;
+}
+
+.customerlistitem > .info .field.address {
+  background-image: url("../images/address.png");    
+}
+
+.customerlistitem > .info .field.vat {
+  background-image: url("../images/vat.png");  
+}
+
+.customerlistitem > .info .field.email {
+  background-image: url("../images/email.png");  
+}
+
+.customerlistitem > .info .field.web {
+  background-image: url("../images/web.png");  
+}
+
+.customerlistitem > .info .field.taxcode {
+  background-image: url("../images/taxcode.png");  
+}
+
+.customerlistitem > .info .field {
+  font-size: small;
+  color: grey;
+  padding-left: 25px;
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  min-height: 20px;
+  min-width: 20px;
+  overflow: hidden;
+  width: 200%;
+}
+
+.customerlistitem > .info > .additional {
+  width: 100%;
+}
+
+.customerlistitem > .info > .additional > .wrap {
+  position: relative;
+  width: 100%;
+}
+
+
+.customerlistitem > .info > .additional .right {
+  position: absolute;  
+  left: 50%;
+  right: 0;
+  top: 0;
+  overflow: hidden; 
+}
+
+.customerlistitem > .info > .additional .left {
+  position: absolute;
+  left: 0;
+  right: 50%;
+  top: 0; 
+  overflow: hidden; 
+}
+
+
+
+
+
+
+
+
+
+

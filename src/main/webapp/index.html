@@ -1,0 +1,214 @@
+<!DOCTYPE HTML>
+<html manifest="" lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>eib</title>
+    <style type="text/css">
+         /**
+         * Example of an initial loading indicator.
+         * It is recommended to keep this as minimal as possible to provide instant feedback
+         * while other resources are still being loaded for the first time
+         */
+        html, body {
+            height: 100%;
+            background-color: #1985D0
+        }
+
+        #appLoadingIndicator {
+            position: absolute;
+            top: 50%;
+            margin-top: -15px;
+            text-align: center;
+            width: 100%;
+            height: 30px;
+            -webkit-animation-name: appLoadingIndicator;
+            -webkit-animation-duration: 0.5s;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-direction: linear;
+        }
+
+        #appLoadingIndicator > * {
+            background-color: #FFFFFF;
+            display: inline-block;
+            height: 30px;
+            -webkit-border-radius: 15px;
+            margin: 0 5px;
+            width: 30px;
+            opacity: 0.8;
+        }
+
+        @-webkit-keyframes appLoadingIndicator{
+            0% {
+                opacity: 0.8
+            }
+            50% {
+                opacity: 0
+            }
+            100% {
+                opacity: 0.8
+            }
+        }
+    </style>
+    <!-- Include the language file -->
+    <script src="lang/En.js"></script>    
+    <!-- The line below must be kept intact for Sencha Command to build your application -->
+    <script id="microloader" type="text/javascript" src="touch/microloader/development.js"></script>
+</head>
+<body>
+    <div id="appLoadingIndicator">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <script type="text/template" id="tpl_policylist_item">
+    <div class="policylistitem">
+      <div class="branch">
+        {[this.getImage(values)]}
+        <div>
+          {branch}
+        </div>
+      </div>
+      <div class="info">
+        <div class="number">
+          {id}
+        </div>
+        <div class="name">
+          {customer} / {company} 
+        </div>
+        <div class="desc">
+          {desc}
+        </div>              
+      </div>
+      <div class="desc_cutter" style></div>
+      <div class="details"></div>
+      <div class="paymentsclaims">
+      {[this.getPaymentsClaims(values)]}      
+      </div>
+      <div class="deadline">
+      {[this.getDeadline(values)]}
+      </div>
+    </div>
+    <div class='list-item-narrative'>{narrative}</div>
+    </script>
+    
+    <script type="text/template" id="tpl_policy_paymentsitem">
+    <div class="paymentlistitem">
+      <div class="info">
+        <div class="title">
+          {title}
+        </div>
+        <div class="awardInstalment">
+          {awardInstalment} €
+        </div>
+      </div>
+      <div class='dates'>
+        <div class='date'>
+          Start Deadline: {[this.getStartDeadline(values)]}
+        </div>
+        <div class="date">
+          Instalment Deadline: {[this.getInstalmentDeadline(values)]}
+        </div>
+        <div class="date">
+          Payment Date: {[this.getPaymentDate(values)]}
+        </div>
+      </div>
+    </script>  
+    
+    <script type="text/template" id="tpl_policy_claimsitem">
+    <div class="claimlistitem">
+      <div class='title'>
+        {desc} - {[this.formatLiquidated(values)]}
+      </div>
+      <div class='line'> 
+        <div class='field type left'>
+          <div class="text">
+            {type}
+          </div>
+        </div>
+        <div class='field date right'>
+          <div class='text'>
+            {[this.formatDate(values)]}            
+          </div>
+        </div>                
+      </div>
+      <div class='line'> 
+        <div class='field counterpart left'>
+          <div class="text">
+            {counterpart}
+          </div>
+        </div>
+        <div class='field archived right'>
+          <div class='text'>
+            {[this.formatDateArch(values)]}            
+          </div>
+        </div>
+    </div>
+    </script>
+    
+    <script type="text/template" id="tpl_messagelist_item">
+    <div class="messagelistitem">      
+      <div class='title'>
+        {title}
+      </div>
+      <div class='line'> 
+        <div class='field type left'>
+          <div class="text">
+            {messageType}
+          </div>
+        </div>
+        <div class='field from right'>
+          <div class='text'>
+          {[this.formatFromDate(values)]}            
+          </div>
+        </div>        
+      </div>      
+      <div class="line">
+        <div class='field doc left'>
+          <div class="text">
+            {documentTitle}
+          </div>
+        </div>
+        <div class='field to right'>
+          <div class='text'>
+            {[this.formatToDate(values)]}            
+          </div>
+        </div>      
+      </div>
+    </div>
+    </script>    
+    
+    <script type="text/template" id="tpl_customerlist_item">
+    <div class="customerlistitem">
+      <div class="name">
+        {name}
+      </div>
+      <div class="info">
+        <div class="field address">
+          {address}
+        </div>
+        <div class="additional">
+          <div class="wrap">
+            <div class="left">
+              <div class="field email">
+                {email}
+              </div>
+              <div class="field web">
+                {web}
+              </div>
+            </div>
+            <div class="right">
+              <div class="field taxcode">
+                {taxcode}
+              </div>
+              <div class="field vat">
+                {vat}
+              </div>
+            </div>
+          </div>
+        </div>      
+      </div>
+    </div>
+    <div class='list-item-narrative'>{narrative}</div>
+    </script>        
+</body>
+</html>

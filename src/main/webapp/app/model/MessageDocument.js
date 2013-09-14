@@ -1,0 +1,48 @@
+Ext.define('eibwebapp.model.MessageDocument', {
+  extend: 'Ext.data.Model',
+  config: {
+    fields: [{
+      name: 'id',
+      type: 'number'
+    }, {
+      name: 'title',
+      type: 'string'
+    }, {
+      name: 'messageType',
+      type: 'string'
+    }, {
+      name: 'dateCreated',
+      type: 'date',
+      dateFormat: 'j/n/Y'
+    }, {
+      name: 'validFrom',
+      type: 'date',
+      dateFormat: 'j/n/Y'
+    }, {
+      name: 'validTo',
+      type: 'date',
+      dateFormat: 'j/n/Y'
+    }, {
+      name: 'documentTitle',
+      type: 'string'
+    }, {
+      name: 'documentLink',
+      type: 'string'
+    }, {
+      name: 'read',
+      type: 'boolean'
+    }, {
+      name: 'branchId',
+      type: 'number'
+    }, {
+      name: 'branch',
+      type: 'string'
+    }, {
+      name: 'companyId',
+      type: 'number'
+    }, {
+      name: 'company',
+      type: 'string'
+    }]
+  }
+});

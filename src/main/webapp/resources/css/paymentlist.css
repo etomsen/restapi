@@ -1,0 +1,52 @@
+.paymentlist{
+
+}
+.paymentlistitem {
+  background-color: white;
+  position: relative; 
+  border: 1px solid #DDD; 
+  overflow: hidden;
+  border-radius: 10px;
+  height: 80px;
+  color: black;
+}
+
+.x-list.paymentlist .x-list-item .x-list-item-body, .x-list.paymentlist .x-list-item.x-list-item-tpl .x-innerhtml {
+  padding: 5px 6px !important;
+}
+
+.x-list.paymentlist .x-list-item.x-list-item-tpl {
+  border: 0 !important;
+}
+
+.paymentlistitem > .info {
+  position: absolute; 
+  left: 0; 
+  top: 0;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+.paymentlistitem > .dates {
+  position: absolute; 
+  right: 0; 
+  top: 0;
+  bottom: 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 10px;
+}
+
+.paymentlistitem > .dates > .date {
+  height: 33%;
+  width: 100%;
+  text-align: right;
+}
+
+.paymentlistitem > .info > .title {
+  font-size: 110%;
+}
+
+.paymentlistitem > .info > .awardInstalment {
+  font-size: 110%;
+}
