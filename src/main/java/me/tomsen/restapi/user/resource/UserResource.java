@@ -47,8 +47,17 @@ public class UserResource {
     @Path("login")
     @POST
     public Response login(LoginRequest request) {
-        LOG.debug(UserResource.class+"login.");
+        LOG.debug(UserResource.class+": login request received");
         AuthenticatedUserToken token = userService.login(request);
+        return getLoginResponse(token);
+    }
+
+    @PermitAll
+    @Path("create")
+    @POST
+    public Response create(LoginRequest request) {
+        LOG.debug(UserResource.class+": create request received");
+        AuthenticatedUserToken token = userService.create(request);
         return getLoginResponse(token);
     }
 
@@ -61,6 +70,7 @@ public class UserResource {
     @Path("{userId}")
     @GET
     public Response getUser(@Context SecurityContext sc, @PathParam("userId") String userId) {
+        LOG.debug(UserResource.class+"getUser [userId: "+userId+"].");
         UserPrincipal requestingUser = (UserPrincipal)sc.getUserPrincipal();
         UserPrincipal user = userService.getUser(requestingUser, userId);
         return Response.ok().entity(user).build();

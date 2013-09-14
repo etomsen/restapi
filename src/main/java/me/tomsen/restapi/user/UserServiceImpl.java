@@ -29,14 +29,6 @@ public class UserServiceImpl extends BaseService implements UserService {
 
     private UserRepository userRepository;
 
-//    @Transactional
-//    public AuthenticatedUserToken createUser(Role role) {
-//        User user = new User();
-//        user.setRole(role);
-//        userRepository.save(user);
-//        return new AuthenticatedUserToken(user.getUuid().toString(), user.addSessionToken().getToken());
-//    }
-
 
     private User createNewUser(String username, String password, Role role) {
         User userToSave = new User();
@@ -57,16 +49,11 @@ public class UserServiceImpl extends BaseService implements UserService {
 
     @Transactional
     public AuthenticatedUserToken login(LoginRequest request) {
+        LOG.debug("UserService.login [login: " + request.getUsername() + " password:" + request.getPassword() + " ]");
         validate(request);
         User user = userRepository.findByUsername(request.getUsername());
         if (user == null) {
-            if (request.getUsername().equals("create")) {
-                LOG.debug(request.getUsername());
-                user = createNewUser(request.getUsername(), request.getPassword(), Role.authenticated);
-                return new AuthenticatedUserToken(user.getUuid().toString(), user.addSessionToken().getToken());
-            } else {
-                throw new AuthenticationException();
-            }
+            throw new AuthenticationException();
         }
         String hashedPassword;
         try {
@@ -75,12 +62,34 @@ public class UserServiceImpl extends BaseService implements UserService {
             throw new AuthenticationException();
         }
         if (hashedPassword.equals(user.getHashedPassword())) {
-            return new AuthenticatedUserToken(user.getUuid().toString(), user.addSessionToken().getToken());
+            return new AuthenticatedUserToken(user.getUuid().toString(), user.addSessionToken().getToken(), user.getRole());
         } else {
             throw new AuthenticationException();
         }
     }
 
+    @Transactional
+    public AuthenticatedUserToken create(LoginRequest request) {
+        LOG.debug("UserService.create [login: " + request.getUsername() + " password:" + request.getPassword() + " ]");
+        validate(request);
+        User user = userRepository.findByUsername(request.getUsername());
+        if (user != null) {
+            throw new AuthenticationException();
+        }
+
+        if (request.getUsername().equals("createAdmin")) {
+                LOG.debug("Creating admin: " + request.getUsername());
+                user = createNewUser(request.getUsername(), request.getPassword(), Role.administrator);
+                return new AuthenticatedUserToken(user.getUuid().toString(), user.addSessionToken().getToken(), user.getRole());
+            }
+
+        if (request.getUsername().equals("createUser")) {
+                LOG.debug("Creating user: " + request.getUsername());
+                user = createNewUser(request.getUsername(), request.getPassword(), Role.authenticated);
+                return new AuthenticatedUserToken(user.getUuid().toString(), user.addSessionToken().getToken(), user.getRole());
+        }
+        throw new AuthenticationException();
+    }
 
     @Transactional
     public Integer deleteExpiredSessions(int timeSinceLastUpdatedInMinutes) {
@@ -102,7 +111,7 @@ public class UserServiceImpl extends BaseService implements UserService {
         Assert.notNull(requestingUser);
         Assert.notNull(userIdentifier);
         User user = ensureUserIsLoaded(userIdentifier);
-        if(!requestingUser.getId().equals(user.getUuid().toString()) && !requestingUser.getRole().equalsIgnoreCase(Role.administrator.toString()))  {
+        if (!requestingUser.getId().equals(user.getUuid().toString()) && !requestingUser.getRole().equalsIgnoreCase(Role.administrator.toString())) {
             throw new AuthorizationException("User not authorized to load profile");
         }
         return new UserPrincipal(user);

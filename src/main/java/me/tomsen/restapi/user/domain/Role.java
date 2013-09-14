@@ -1,12 +1,9 @@
 package me.tomsen.restapi.user.domain;
 
-/**
- * User: porter
- * Date: 03/04/2012
- * Time: 13:17
- */
-public enum Role {
+import javax.xml.bind.annotation.XmlEnum;
 
+@XmlEnum(String.class)
+public enum Role {
     authenticated, administrator, anonymous
 }
 
