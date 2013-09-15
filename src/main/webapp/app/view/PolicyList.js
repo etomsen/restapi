@@ -3,6 +3,8 @@ Ext.define('eibwebapp.view.PolicyList', {
   xtype: 'policylistview',
   requires: ['eibwebapp.view.filter.PolicyList'],
   config: {
+    loadingText: "Loading your policies ...",
+    store: 'PolicyList',
     items: [{
       xtype: 'toolbar',
       docked: 'bottom',
@@ -63,7 +65,6 @@ Ext.define('eibwebapp.view.PolicyList', {
         }
       }
     }),
-    store: "PolicyListLocal",
     emptyText: Lang.policyListView.emptyText
   }
 });

@@ -27,26 +27,7 @@ Ext.define('eibwebapp.util.Util', {
       eibwebapp.app.redirectTo('');
     });
     return false;
-  },
-  
-  getUserId: function() {
-    var sto = Ext.getStore("User");
-    if (sto) {
-      return sto.id;
-    } else {
-      return null;
-    }
-  },
-
-  getUserToken: function() {
-    var sto = Ext.getStore("User");
-    if (sto) {
-      return sto.token;
-    } else {
-      return null;
-    }    
-  },
-    
+  },  
 
   validateUser: function() {
     var sto  = Ext.getStore("User");

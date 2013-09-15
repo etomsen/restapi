@@ -1,7 +1,7 @@
 Ext.define('eibwebapp.controller.Login', {
     extend: 'Ext.app.Controller',
     util: eibwebapp.util.Util,
-    rest: eibwebapp.rest.Rest,
+    rest: eibwebapp.util.Rest,
     config: {
         routes: {
             'login': 'showLogin',
@@ -50,17 +50,9 @@ Ext.define('eibwebapp.controller.Login', {
                 sto.id = obj.userId;
                 sto.token = obj.token;
                 sto.role = obj.role;
-
-                if (sto.role === 'admin') {
-                    sto.customerId = null;
-                    eibwebapp.app.redirectTo('customer/list');
-                } else {
-                    sto.customerId = sto.id;
-                    eibwebapp.app.redirectTo('message/list');
-                }
                 console.log("INFO: signed in as " + sto.role);
-                me.getLoginView()
-                    .setMasked(false);
+                me.getLoginView().setMasked(false);
+                eibwebapp.app.redirectTo('');
             } else {
                 console.log("INFO: login request" + response.statusText);
                 obj = JSON.parse(response.responseText);

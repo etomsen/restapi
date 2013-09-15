@@ -9,22 +9,22 @@ Ext.define('eibwebapp.store.MainMenu', {
     model: 'eibwebapp.model.MainMenu',
     data: [{
       id: 1,
-      role: "user",
+      role: "authenticated",
       title: Lang.home,
       url: ""
     }, {
       id: 2,
-      role: "user",
+      role: "authenticated",
       title: Lang.policy,
       url: "policy/list"
     }, {
       id: 3,
-      role: "user",
+      role: "authenticated",
       title: Lang.messages,
       url: "message/list"
     }, {
       id: 4,
-      role: "user",
+      role: "authenticated",
       title: Lang.logout,
       url: "logout"
     }, {

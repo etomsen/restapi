@@ -68,6 +68,7 @@ Ext.define('eibwebapp.controller.Policy', {
         xtype: me.getRefs().listView
       });
     }
+    me.getListView().getStore().load();
 
     me.getListView().setActiveItem(0);
     me.util.showActiveItem(me.util.getMainViewPanel(me), me.getListView(), me.animationLeft);

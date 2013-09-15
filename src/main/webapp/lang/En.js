@@ -8,6 +8,7 @@ Lang = {
   messages: 'Messages',
   selectcustomer: 'Select customer...',
   signingIn: 'Signing In...',
+  updateAppReload: {header: "Application Update", msg: "This application has just successfully been updated to the latest version. Reload now?"},
   
   userValidation: {
     noUser: {header: "User not identified", msg: "Please Log in!"},

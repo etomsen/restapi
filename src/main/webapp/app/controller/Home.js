@@ -1,6 +1,7 @@
 Ext.define('eibwebapp.controller.Home', {
   extend: 'Ext.app.Controller',
   util: eibwebapp.util.Util,
+  rest: eibwebapp.util.Rest,
   config: {
     routes: {
       '': 'showHome'
@@ -19,6 +20,10 @@ Ext.define('eibwebapp.controller.Home', {
 
   showHome: function(animation) {    
     var me = this;
-    me.getApplication().redirectTo('message/list');
+    me.rest.healthcheckauth(function(response, opts) {
+      me.getApplication().redirectTo('message/list');
+    }, function(response, opts) {
+      me.getApplication().redirectTo('logout');
+    });
   }
 });

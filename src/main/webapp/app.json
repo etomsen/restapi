@@ -49,9 +49,19 @@
             "update": "delta"
         },
         {
-            "path": "lang/En.js",
-            "update": "delta"
-        }        
+        "path": "lang/En.js",
+        "bundle": true,
+        "update": "delta"
+        },
+        {
+        "path": "resources/js/sha256.js",
+        "bundle": true,
+        "update": "delta"
+        },{
+        "path": "resources/js/enc-base64-min.js",
+        "bundle": true,
+        "update": "delta"
+        }
     ],
 
     /**

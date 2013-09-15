@@ -10,4 +10,5 @@
     <context:component-scan base-package="me.tomsen.restapi.config"/>
     <context:component-scan base-package="me.tomsen.restapi.resource"/>
     <context:component-scan base-package="me.tomsen.restapi.user"/>
+    <context:component-scan base-package="me.tomsen.restapi.policy"/>
 </beans>

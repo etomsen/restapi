@@ -20,7 +20,7 @@ Ext.Loader.setPath({
 Ext.application({
   name: 'eibwebapp',
   version: '0.3.3',
-  requires: ['Ext.MessageBox', 'eibwebapp.util.Util', "eibwebapp.rest.Rest", 'Ext.DateExtras'],
+  requires: ['Ext.MessageBox', 'eibwebapp.util.Util', "eibwebapp.util.Rest", 'Ext.DateExtras'],
   views: ['Login', 'Navbar', 'MainMenu', 'Main', 'PolicyList', 'Test', 'Filter', 'Policy', 'policy.Main', 'policy.Payments', 'policy.Claims', 'CustomerList', 'Customer', 'filter.PolicyList', 'filter.CustomerList', 'FilterDataField', 'Filterfield', 'MessageList'],
   controllers: ['Login', 'Home', 'Navbar', 'Policy', 'Filter', 'Customer', 'Message'],
   models: ['PolicyList', 'Policy', 'User', 'CustomerList', 'Customer', 'Payment', 'MessageDocument', 'Claim', 'MainMenu'],
@@ -45,12 +45,18 @@ Ext.application({
     var me = this;
     console.log(me.name + ' version: ' + me.version);
     Ext.Ajax.setUseDefaultXhrHeader(false);
-    // Destroy the #appLoadingIndicator element    
-    Ext.fly('appLoadingIndicator').destroy();    
+    // Destroy the #appLoadingIndicator element
+    Ext.fly('appLoadingIndicator').destroy();
+      Ext.Ajax.on('beforerequest', (function(conn, options, eOpts) {
+          var n = options.url.indexOf('?');
+          var url = options.url.substring(0, n != -1 ? n : options.url.length);
+          var h = eibwebapp.util.Rest.getAuthorizationHeader(url, options.method);
+          if (h && eibwebapp.util.Rest.addAuthHeader) {options.headers = h;}
+      }), this);
   },
 
   onUpdated: function() {
-    Ext.Msg.confirm("Application Update", "This application has just successfully been updated to the latest version. Reload now?", function(buttonId) {
+    Ext.Msg.confirm(Lang.updateAppReload.header, Lang.updateAppReload.msg , function(buttonId) {
       if (buttonId === 'yes') {
         window.location.reload();
       }
