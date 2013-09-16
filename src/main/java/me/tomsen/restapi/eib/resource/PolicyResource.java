@@ -1,7 +1,7 @@
-package me.tomsen.restapi.policy.resource;
+package me.tomsen.restapi.eib.resource;
 
-import me.tomsen.restapi.policy.PolicyService;
-import me.tomsen.restapi.policy.api.PolicyList;
+import me.tomsen.restapi.eib.service.PolicyService;
+import me.tomsen.restapi.eib.api.PolicyList;
 import me.tomsen.restapi.user.api.UserPrincipal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

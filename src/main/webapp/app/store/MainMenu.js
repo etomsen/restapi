@@ -29,33 +29,33 @@ Ext.define('eibwebapp.store.MainMenu', {
       url: "logout"
     }, {
       id: 5,
-      role: eibwebapp.util.roleAdmin,
+      role: "administrator",
       title: Lang.home,
       url: ""
     }, {
       id: 6,
-      role: eibwebapp.util.roleAdmin,
+      role: "administrator",
       title: Lang.policy,
       url: "policy/list"
     }, {
       id: 7,
-      role: eibwebapp.util.roleAdmin,
+      role: "administrator",
       title: Lang.selectcustomer,
       url: "customer/list"
     }, {
       id: 8,
-      role: eibwebapp.util.roleAdmin,
+      role: "administrator",
       title: Lang.messages,
       url: "message/list"
     }, {
       id: 9,
-      role: eibwebapp.util.roleAdmin,
+      role: "administrator",
       title: Lang.logout,
       url: "logout"
     }],
     filters: [{
-      property: 'role',
-      value: eibwebapp.util.roleAdmin
+      property: "role",
+      value: ""
     }]
   }
 });

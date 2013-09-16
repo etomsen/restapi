@@ -27,6 +27,10 @@ public class SecurityContextImpl implements SecurityContext {
         if (user == null) {
             throw new InvalidAuthorizationHeaderException();
         }
+        // because there are some resources admin should not see :)
+//        if (user.getRole().equalsIgnoreCase(Role.administrator.name())) {
+//            return true;
+//        }
         return user.getRole().equalsIgnoreCase(role);
     }
 

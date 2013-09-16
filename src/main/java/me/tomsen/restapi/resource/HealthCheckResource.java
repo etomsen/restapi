@@ -42,7 +42,7 @@ public class HealthCheckResource {
 
     @Path("auth")
     @GET
-    @RolesAllowed({"authenticated"})
+    @RolesAllowed({"authenticated", "administrator"})
     @Produces({MediaType.APPLICATION_JSON})
     public Response auth(@Context SecurityContext sc) {
         LOG.info(HealthCheckResource.class+".auth []");

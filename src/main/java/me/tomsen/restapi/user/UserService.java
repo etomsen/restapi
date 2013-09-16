@@ -6,7 +6,7 @@ public interface UserService {
 
     public AuthenticatedUserToken login(LoginRequest request);
 
-    public AuthenticatedUserToken create(LoginRequest request);
+    public AuthenticatedUserToken create(CreateUserRequest request);
 
     public Integer deleteExpiredSessions(int timeSinceLastUpdatedInMinutes);
 

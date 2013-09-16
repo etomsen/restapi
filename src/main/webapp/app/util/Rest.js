@@ -47,17 +47,17 @@ Ext.define("eibwebapp.util.Rest", {
             return false;
         },
 
-        setUser: function(userId, token) {
+        setUser: function(userId, token, role) {
             debugger;
             var me = this;
             var d = new Date();
             d.setDate(d.getDate() + me.cookieValidity);
             Ext.util.Cookies.set('eibwebapp_userId', userId, d, "/");
             Ext.util.Cookies.set('eibwebapp_userToken', token, d, "/");
+            Ext.util.Cookies.set('eibwebapp_userRole', role, d, "/");
         },
 
         validateUser: function () {
-            debugger;
             var me = this;
             if (me.getUserId() && me.getUserToken()) {
                 return true;
@@ -74,6 +74,10 @@ Ext.define("eibwebapp.util.Rest", {
 
         getUserToken: function () {
             return Ext.util.Cookies.get('eibwebapp_userToken');
+        },
+
+        getUserRole: function () {
+            return Ext.util.Cookies.get('eibwebapp_userRole');
         },
 
         getAuthorizationHeader: function (url, method) {

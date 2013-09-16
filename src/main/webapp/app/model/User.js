@@ -3,18 +3,6 @@ Ext.define('eibwebapp.model.User', {
   requires: ['Ext.data.proxy.LocalStorage'],
   config: {
     fields: [{
-      id: '',
-      type: 'string'
-    }, {
-      name: '',
-      type: 'string'
-    }, {
-      token: '',
-      type: 'string'
-    }, {
-      role: '',
-      type: 'string'
-    }, {
       customerId: '', // userId for admin
       type: 'number'
     }],

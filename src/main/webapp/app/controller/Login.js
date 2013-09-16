@@ -47,9 +47,8 @@ Ext.define('eibwebapp.controller.Login', {
             if (response.statusText === "OK") {
                 console.log('INFO: login request OK');
                 obj = JSON.parse(response.responseText);
-                eibwebapp.util.Rest.setUser(obj.userId, obj.token);
-                sto.role = obj.role;
-                console.log("INFO: signed in as " + sto.role);
+                eibwebapp.util.Rest.setUser(obj.userId, obj.token, obj.role);
+                console.log("INFO: signed in as " + obj.role);
                 me.getLoginView().setMasked(false);
                 eibwebapp.app.redirectTo('');
             } else {
@@ -92,7 +91,7 @@ Ext.define('eibwebapp.controller.Login', {
         var sto = Ext.getStore("User");
         Ext.util.Cookies.clear('eibwebapp_userId', "/");
         Ext.util.Cookies.clear('eibwebapp_userToken', "/");
-        sto.role = "";
+        Ext.util.Cookies.clear('eibwebapp_userRole', "/");
         sto.customerId = "";
         eibwebapp.app.fireEvent('clearFilerCmd');
         eibwebapp.app.redirectTo('login');

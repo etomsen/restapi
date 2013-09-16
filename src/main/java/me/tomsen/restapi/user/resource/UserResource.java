@@ -4,6 +4,7 @@ import me.tomsen.restapi.config.ApplicationConfig;
 import me.tomsen.restapi.user.UserService;
 import me.tomsen.restapi.user.VerificationTokenService;
 import me.tomsen.restapi.user.api.AuthenticatedUserToken;
+import me.tomsen.restapi.user.api.CreateUserRequest;
 import me.tomsen.restapi.user.api.LoginRequest;
 
 import java.net.URI;
@@ -53,10 +54,10 @@ public class UserResource {
     }
 
     @PermitAll
-    @Path("create")
     @POST
-    public Response create(LoginRequest request) {
-        LOG.debug(UserResource.class+": create request received");
+    @Path("create")
+    public Response create(CreateUserRequest request) {
+        LOG.debug(UserResource.class+": create request received for [userId: "+request.getEibUserName()+"]");
         AuthenticatedUserToken token = userService.create(request);
         return getLoginResponse(token);
     }

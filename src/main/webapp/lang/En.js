@@ -19,7 +19,7 @@ Lang = {
   
   policyListView: {
     navbartitle: 'Policy List',
-    pullToRefresh: 'Pull down to refresh policy list!',
+    pullToRefresh: 'Pull down to refresh eib list!',
     emptyText: 'No policies available with this filter'
   },
   
@@ -36,10 +36,10 @@ Lang = {
     navbartitle: 'Policy Details'
   },
   paymentListView: {
-    emptyText: 'No payments found for this policy'
+    emptyText: 'No payments found for this eib'
   },  
   claimListView: {
-    emptyText: 'No claims found for this policy'
+    emptyText: 'No claims found for this eib'
   },
   messageListView: {
     navbartitleNew: 'New messages',

@@ -1,4 +1,4 @@
-package me.tomsen.restapi.policy.api;
+package me.tomsen.restapi.eib.api;
 
 import me.tomsen.restapi.api.DateAdapter;
 

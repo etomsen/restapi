@@ -82,21 +82,19 @@ Ext.define('eibwebapp.controller.Policy', {
     if (userStore.customerId) {      
       var customerStore = Ext.getStore('CustomerListLocal');
       var customer = customerStore.getById(userStore.customerId);
-      if (userStore.role === me.util.roleAdmin) {
-        customerPicker.enable();
-      } else {
-        customerPicker.disable();
-      }
+//      if (userStore.role === me.util.roleAdmin) {
+//        customerPicker.enable();
+//      } else {
+//        customerPicker.disable();
+//      }
       if (customer) {
         customerPicker.setValue(customer.get('name'));
       }      
       customerPicker.fireEvent('change', customerPicker, userStore.customerId);
     } else {
-      if (userStore.role === me.util.roleAdmin) {
         sto.clearFilter();
         customerPicker.enable();
         customerPicker.reset();
-      }
     }
   }
 });

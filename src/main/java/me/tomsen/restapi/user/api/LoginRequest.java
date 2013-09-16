@@ -12,7 +12,6 @@ public class LoginRequest {
     @NotNull
     private String username;
 
-    @Length(min = 8, max = 30)
     @NotNull
     private String password;
 

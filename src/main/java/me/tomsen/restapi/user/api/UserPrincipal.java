@@ -12,8 +12,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 public class UserPrincipal implements Principal {
 
     private String id;
-    private String username;
     private boolean isVerified;
+    private String username;
     @JsonIgnore
     private String role;
 

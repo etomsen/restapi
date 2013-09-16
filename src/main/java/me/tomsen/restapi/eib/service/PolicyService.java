@@ -1,6 +1,6 @@
-package me.tomsen.restapi.policy;
+package me.tomsen.restapi.eib.service;
 
-import me.tomsen.restapi.policy.api.PolicyList;
+import me.tomsen.restapi.eib.api.PolicyList;
 import me.tomsen.restapi.user.api.UserPrincipal;
 
 /**

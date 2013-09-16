@@ -1,8 +1,11 @@
 package me.tomsen.restapi.user;
 
 
+import me.tomsen.restapi.eib.domain.EibUser;
+import me.tomsen.restapi.eib.repository.EibUserRepository;
 import me.tomsen.restapi.service.BaseService;
 import me.tomsen.restapi.user.api.AuthenticatedUserToken;
+import me.tomsen.restapi.user.api.CreateUserRequest;
 import me.tomsen.restapi.user.api.LoginRequest;
 import me.tomsen.restapi.user.api.UserPrincipal;
 import me.tomsen.restapi.user.domain.Role;
@@ -28,13 +31,14 @@ public class UserServiceImpl extends BaseService implements UserService {
     Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
 
     private UserRepository userRepository;
+    private EibUserRepository eibUserRepository;
 
 
-    private User createNewUser(String username, String password, Role role) {
-        User userToSave = new User();
-        userToSave.setUsername(username);
+    private User createNewUser(EibUser eibUser, Role role) {
+        User userToSave = new User(eibUser, role);
+        userToSave.setUsername(eibUser.getName());
         try {
-            userToSave.setHashedPassword(userToSave.hashPassword(password));
+            userToSave.setHashedPassword(userToSave.hashPassword(eibUser.getPassword()));
         } catch (Exception e) {
             throw new AuthenticationException();
         }
@@ -69,26 +73,29 @@ public class UserServiceImpl extends BaseService implements UserService {
     }
 
     @Transactional
-    public AuthenticatedUserToken create(LoginRequest request) {
-        LOG.debug("UserService.create [login: " + request.getUsername() + " password:" + request.getPassword() + " ]");
+    public AuthenticatedUserToken create(CreateUserRequest request) {
+        LOG.debug("UserService.create [login: " + request.getUsername() + " eibUser:" + request.getEibUserName() + " password:" + request.getPassword() + " ]");
         validate(request);
         User user = userRepository.findByUsername(request.getUsername());
         if (user != null) {
+            LOG.debug(" Duplicate user!");
             throw new AuthenticationException();
         }
 
-        if (request.getUsername().equals("createAdmin")) {
-                LOG.debug("Creating admin: " + request.getUsername());
-                user = createNewUser(request.getUsername(), request.getPassword(), Role.administrator);
-                return new AuthenticatedUserToken(user.getUuid().toString(), user.addSessionToken().getToken(), user.getRole());
-            }
-
-        if (request.getUsername().equals("createUser")) {
-                LOG.debug("Creating user: " + request.getUsername());
-                user = createNewUser(request.getUsername(), request.getPassword(), Role.authenticated);
-                return new AuthenticatedUserToken(user.getUuid().toString(), user.addSessionToken().getToken(), user.getRole());
+        EibUser eibUser = eibUserRepository.findByUsername(request.getEibUserName());
+        if (eibUser == null) {
+            LOG.debug(" No eibUser found with name"+request.getEibUserName());
+            throw new AuthenticationException();
         }
-        throw new AuthenticationException();
+
+        if (!request.getUsername().equals("eibwebappcreate") || !request.getPassword().equals("e1bweb@pp")) {
+            LOG.debug(" Authentification failed: "+request.getUsername());
+            throw new AuthenticationException();
+        }
+
+        LOG.debug("Creating user [Name: "+ request.getUsername() + "Role: "+request.getRole().toString() + "]");
+        user = createNewUser(eibUser, request.getRole());
+        return new AuthenticatedUserToken(user.getUuid().toString(), user.addSessionToken().getToken(), user.getRole());
     }
 
     @Transactional
@@ -120,6 +127,11 @@ public class UserServiceImpl extends BaseService implements UserService {
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    @Autowired
+    public void setEibUserRepository(EibUserRepository r) {
+        this.eibUserRepository = r;
     }
 
     private User ensureUserIsLoaded(String userIdentifier) {

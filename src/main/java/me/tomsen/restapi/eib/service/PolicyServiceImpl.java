@@ -1,13 +1,12 @@
-package me.tomsen.restapi.policy;
+package me.tomsen.restapi.eib.service;
 
-import me.tomsen.restapi.policy.api.PolicyList;
-import me.tomsen.restapi.policy.api.PolicyListItem;
+import me.tomsen.restapi.eib.api.PolicyList;
+import me.tomsen.restapi.eib.api.PolicyListItem;
 import me.tomsen.restapi.service.BaseService;
 import me.tomsen.restapi.user.UserRepository;
 import me.tomsen.restapi.user.api.UserPrincipal;
 import me.tomsen.restapi.user.domain.Role;
 import me.tomsen.restapi.user.domain.User;
-import me.tomsen.restapi.user.exception.AuthorizationException;
 import me.tomsen.restapi.user.exception.UserNotFoundException;
 import me.tomsen.restapi.util.StringUtil;
 import org.slf4j.Logger;

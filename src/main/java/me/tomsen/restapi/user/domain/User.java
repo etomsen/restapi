@@ -1,6 +1,7 @@
 package me.tomsen.restapi.user.domain;
 
 import me.tomsen.restapi.authorization.UserSession;
+import me.tomsen.restapi.eib.domain.EibUser;
 import me.tomsen.restapi.model.BaseEntity;
 import me.tomsen.restapi.util.HashUtil;
 import org.hibernate.annotations.LazyCollection;
@@ -37,6 +38,9 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @ManyToOne(targetEntity = EibUser.class,  cascade = CascadeType.DETACH)
+    private EibUser eibUser;
+
 
     @OneToMany(mappedBy = "user", targetEntity = VerificationToken.class, cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -49,6 +53,12 @@ public class User extends BaseEntity {
 
     public User() {
         this(UUID.randomUUID());
+    }
+
+    public User(EibUser u, Role r) {
+        this();
+        this.eibUser = u;
+        this.role = r;
     }
 
     public User(UUID uuid) {
