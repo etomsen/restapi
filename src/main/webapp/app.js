@@ -20,7 +20,7 @@ Ext.Loader.setPath({
 Ext.application({
   name: 'eibwebapp',
   version: '0.3.3',
-  requires: ['Ext.MessageBox', 'eibwebapp.util.Util', "eibwebapp.util.Rest", 'Ext.DateExtras'],
+  requires: ['Ext.MessageBox', 'eibwebapp.util.Util', "eibwebapp.util.Rest", 'Ext.DateExtras', "Ext.util.Cookies"],
   views: ['Login', 'Navbar', 'MainMenu', 'Main', 'PolicyList', 'Test', 'Filter', 'Policy', 'policy.Main', 'policy.Payments', 'policy.Claims', 'CustomerList', 'Customer', 'filter.PolicyList', 'filter.CustomerList', 'FilterDataField', 'Filterfield', 'MessageList'],
   controllers: ['Login', 'Home', 'Navbar', 'Policy', 'Filter', 'Customer', 'Message'],
   models: ['PolicyList', 'Policy', 'User', 'CustomerList', 'Customer', 'Payment', 'MessageDocument', 'Claim', 'MainMenu'],

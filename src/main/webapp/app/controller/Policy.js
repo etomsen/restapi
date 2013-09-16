@@ -2,6 +2,7 @@ Ext.define('eibwebapp.controller.Policy', {
   extend: 'Ext.app.Controller',
   requires: ['Ext.MessageBox'],
   util: eibwebapp.util.Util,
+  rest: eibwebapp.util.Rest,
   config: {
     routes: {
       'policy/list': 'showList',
@@ -34,7 +35,7 @@ Ext.define('eibwebapp.controller.Policy', {
   },  
   showDetails: function(policyId) {
     var me = this;
-    if (!me.util.validateUser()) return;
+    if (!me.rest.validateUser()) return;
     if (!me.getMainView()) {
       me.util.initViewport(me.getRefs().mainView, {});
     }
@@ -58,7 +59,7 @@ Ext.define('eibwebapp.controller.Policy', {
   showList: function() {
     var me = this;
     
-    if (!me.util.validateUser()) return;
+    if (!me.rest.validateUser()) return;
     
     if (!me.getMainView()) {
       me.util.initViewport(me.getRefs().mainView, {});
@@ -81,7 +82,7 @@ Ext.define('eibwebapp.controller.Policy', {
     if (userStore.customerId) {      
       var customerStore = Ext.getStore('CustomerListLocal');
       var customer = customerStore.getById(userStore.customerId);
-      if (userStore.role === 'admin') {
+      if (userStore.role === me.util.roleAdmin) {
         customerPicker.enable();
       } else {
         customerPicker.disable();
@@ -91,7 +92,7 @@ Ext.define('eibwebapp.controller.Policy', {
       }      
       customerPicker.fireEvent('change', customerPicker, userStore.customerId);
     } else {
-      if (userStore.role === 'admin') {
+      if (userStore.role === me.util.roleAdmin) {
         sto.clearFilter();
         customerPicker.enable();
         customerPicker.reset();

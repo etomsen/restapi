@@ -1,5 +1,7 @@
 Ext.define('eibwebapp.util.Util', {
-  singleton: true,  
+  singleton: true,
+
+  roleAdmin: "administrator",
   destroyCmp: function(child, parent) {
     parent = parent || Ext.Viewport;
     if (child) {
@@ -16,29 +18,6 @@ Ext.define('eibwebapp.util.Util', {
     } else {
       return null;
     }
-  },
-
-  validateUserRoleAdmin: function() {
-    var sto = Ext.getStore("User");
-    if (sto && sto.role === "admin") {
-      return true;
-    }
-    Ext.Msg.alert(Lang.userValidation.roleAdminRequired.header, Lang.userValidation.roleAdminRequired.msg, function(buttonId) {
-      eibwebapp.app.redirectTo('');
-    });
-    return false;
-  },  
-
-  validateUser: function() {
-    var sto  = Ext.getStore("User");
-    if (sto && sto.id && sto.token) {
-      return true;
-    } else {
-      Ext.Msg.alert(Lang.userValidation.noUser.header, Lang.userValidation.noUser.msg, function(buttonId) {
-        eibwebapp.app.redirectTo('logout');
-      });
-    }
-    return true;
   },
 
   showMsg: function(msg, title, cb, scope) {

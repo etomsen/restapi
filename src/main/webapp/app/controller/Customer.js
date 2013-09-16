@@ -1,6 +1,7 @@
 Ext.define('eibwebapp.controller.Customer', {
   extend: 'Ext.app.Controller',
   util: eibwebapp.util.Util,
+  rest: eibwebapp.util.Rest,
   config: {
     routes: {
       'customer/list': 'showList',
@@ -33,7 +34,7 @@ Ext.define('eibwebapp.controller.Customer', {
 
   showList: function(animation) {
     var me = this;
-    if (!me.util.validateUserRoleAdmin()) {
+    if (!me.rest.validateUserRoleAdmin()) {
       return;
     }    
 

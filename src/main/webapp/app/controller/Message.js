@@ -1,6 +1,7 @@
 Ext.define('eibwebapp.controller.Message', {
   extend: 'Ext.app.Controller',
   util: eibwebapp.util.Util,
+  rest: eibwebapp.util.Rest,
   config: {
     routes: {
       'message/list': 'showList',
@@ -73,7 +74,7 @@ Ext.define('eibwebapp.controller.Message', {
 
   showList: function(animation) {    
     var me = this;
-    if (!me.util.validateUser()) return;
+    if (!me.rest.validateUser()) return;
     if (!me.getMainView()) {
       me.util.initViewport(me.getRefs().mainView, me.animation);
     }
